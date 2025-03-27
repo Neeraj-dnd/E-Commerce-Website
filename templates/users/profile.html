@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success - HareKrishnaMasale</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'payments/success.css' %}">
+    <link rel="stylesheet" href="{% static 'harekrishnamasale/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'users/profile.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/media/homepage/logo.png" alt="HareKrishnaMasale Logo">
+                <h3>HareKrishnaMasale</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'product-list' %}">Products</a></li>
+                <li><a href="{% url 'cart:cart-detail' %}">Cart</a></li>
+                <li><a href="#contact">Contact</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li class="user-dropdown">
+                        <span id="user-toggle" class="user-name">👤 {{ user.username }}</span>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li><a href="#">Your Profile</a></li>
+                            <li>Your Orders</li>
+                            <li>
+                                <form method="POST" action="{% url 'logout' %}">
+                                  {% csrf_token %}
+                                  <button type="submit" class="logout-btn">Logout</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="user-dropdown">
+                        <a href="{% url 'login' %}"><span id="user-toggle" class="user-name">👤Login</span></a>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li>
+                                <form method="get" action="{% url 'users:register' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-btn">Sign Up</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <section id="profile-case">
+        {% block content %}
+            <div class="profile-wrapper">
+                <div class="profile-header">
+                    <h1>Hello, {{ user.username }} 🙌</h1>
+                    <p>Welcome to your dashboard. Here's where your spice journey begins 🌶️</p>
+                </div>
+            
+                <div class="profile-section">
+                    <div class="profile-card">
+                        <h2>Account Info</h2>
+                        <p><strong>Username:</strong> {{ user.username }}</p>
+                        <p><strong>Email:</strong> {{ user.email|default:"Not Provided" }}</p>
+                    </div>
+
+                    <div class="profile-card">
+                        <h2>Your Orders 🧾</h2>
+                        {% if orders %}
+                            <ul>
+                            {% for order in orders %}
+                                <li>
+                                    <strong>#{{ order.id }}</strong> - ₹{{ order.total_price }} - 
+                                    {{ order.status }} - 
+                                    <em>{{ order.created_at|date:"M d, Y H:i" }}</em>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>You haven't placed any orders yet 😔</p>
+                        {% endif %}
+                    </div>                    
+            
+                    <div class="profile-card">
+                        <h2>Quick Actions</h2>
+                        <p>🔧 Update profile (coming soon)</p>
+                        <p>🛒 View orders (coming soon)</p>
+                        <p>❤️ Wishlist (coming soon)</p>
+                    </div>
+            
+                    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+                </div>
+            </div>
+        {% endblock %}
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div>📍 Location: Kota, India - 324010</div>
+            <div>📞 Phone: +91 8769106573</div>
+            <div>✉ Email: contact@harekrishnamasale.com</div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 HareKrishnaMasale. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+
+

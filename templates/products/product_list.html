@@ -1,0 +1,148 @@
+{% load static %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - HareKrishnaMasale</title>
+    <link rel="stylesheet" href="{% static 'harekrishnamasale/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'products/products.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/media/homepage/logo.png" alt="HareKrishnaMasale Logo">
+                <h3>HareKrishnaMasale</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'product-list' %}">Products</a></li>
+                <li><a href="{% url 'cart:cart-detail' %}">Cart</a></li>
+                <li><a href="#contact">Contact</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li class="user-dropdown">
+                        <span id="user-toggle" class="user-name">👤 {{ user.username }}</span>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li><a href="#">Your Profile</a></li>
+                            <li>Your Orders</li>
+                            <li>
+                                <form method="POST" action="{% url 'logout' %}">
+                                  {% csrf_token %}
+                                  <button type="submit" class="logout-btn">Logout</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="user-dropdown">
+                        <a href="{% url 'login' %}"><span id="user-toggle" class="user-name">👤Login</span></a>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li>
+                                <form method="get" action="{% url 'users:register' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-btn">Sign Up</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <section class="products">
+        <h2>Welcome to Hare Krishna Masale Store!</h2>
+        <p>Check out our finest selection of spices!</p>
+        
+        <div class="filter-options">
+            <button class="filter-btn" data-category="all">All</button>
+            <button class="filter-btn" data-category="hot">Hot Spices</button>
+            <button class="filter-btn" data-category="blends">Masala Blends</button>
+            <button class="filter-btn" data-category="whole">Whole Spices</button>
+            <button class="filter-btn" data-category="exotic">Exotic Spices</button>
+            <button class="filter-btn" data-category="herbs">Herbs & Seeds</button>
+        </div>
+    </section>
+
+    {% block content %}
+        <div class="product-grid">
+            {% for product in products %}
+                <div class="product">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p>₹{{ product.price }}</p>
+                    <a href="#">Add to Cart</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
+    
+    <section class="products">
+        <h1>Our Bestselling Spices</h1>
+        <div class="product-grid">
+            {% for product in products %}            
+                <div class="product">
+                    <a href="{% url 'product-detail' product.id %}">
+                        <div id="product-img">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </div>
+                    </a>
+                    <h3>{{ product.name }}</h3>
+                    <p>₹{{ product.price }}</p>
+                    <form action="{% url 'cart:cart-add' product.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Add to Cart</button>
+                    </form>  
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'product-list' %}" class="cta">View All Spices</a>
+    </section>
+
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div>📍 Location: Kota, India - 324010</div>
+            <div>📞 Phone: +91 8769106573</div>
+            <div>✉ Email: contact@harekrishnamasale.com</div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 HareKrishnaMasale. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{% static 'harekrishnamasale/homepage.js' %}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const products = document.querySelectorAll(".product");
+
+            filterButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const category = button.getAttribute("data-category");
+
+                    products.forEach(product => {
+                        if (category === "all" || product.getAttribute("data-category") === category) {
+                            product.style.display = "block";
+                        } else {
+                            product.style.display = "none";
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+   

@@ -1,0 +1,129 @@
+{% load static %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Products - HareKrishnaMasale</title>
+    <link rel="stylesheet" href="{% static 'harekrishnamasale/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'products/products.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/media/homepage/logo.png" alt="HareKrishnaMasale Logo">
+                <h3>HareKrishnaMasale</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'product-list' %}">Products</a></li>
+                <li><a href="{% url 'cart:cart-detail' %}">Cart</a></li>
+                <li><a href="#contact">Contact</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li class="user-dropdown">
+                        <span id="user-toggle" class="user-name">👤 {{ user.username }}</span>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li><a href="#">Your Profile</a></li>
+                            <li>Your Orders</li>
+                            <li>
+                                <form method="POST" action="{% url 'logout' %}">
+                                  {% csrf_token %}
+                                  <button type="submit" class="logout-btn">Logout</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="user-dropdown">
+                        <a href="{% url 'login' %}"><span id="user-toggle" class="user-name">👤Login</span></a>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li>
+                                <form method="get" action="{% url 'users:register' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-btn">Sign Up</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <section class="products">
+        <h2>Your Shopping Cart</h2>
+        <p>Cart full of Spices!</p>
+    </section>
+
+    <div class="cart-container">
+        {% for item in cart %}
+            <div class="cart-items">
+                <img src="{{ item.product.image.url }}" width="100">
+                <div class="cart-info">
+                    <p id="product-name">{{ item.product.name }}</p>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Price: ₹{{ item.total_price }}</p>
+                </div>
+                <a href="{% url 'cart:cart-remove' item.product.id %}">Remove</a>
+            </div>
+        {% empty %}
+            <p>Your cart is empty!</p>
+        {% endfor %}
+    
+        <p class="cart-total">Total: ₹{{ cart.total_price }}</p>
+        <div id="cart-buttons">
+            <a href="/products/" class="continue-shopping">Continue Shopping</a>
+            <form action="{% url 'cart:checkout' %}" method="get">
+                <button type="submit" class="btn">Proceed to Checkout</button>
+            </form>            
+        </div>
+         
+    </div>
+    
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div>📍 Location: Kota, India - 324010</div>
+            <div>📞 Phone: +91 8769106573</div>
+            <div>✉ Email: contact@harekrishnamasale.com</div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 HareKrishnaMasale. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{% static 'harekrishnamasale/homepage.js' %}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const products = document.querySelectorAll(".product");
+
+            filterButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const category = button.getAttribute("data-category");
+
+                    products.forEach(product => {
+                        if (category === "all" || product.getAttribute("data-category") === category) {
+                            product.style.display = "block";
+                        } else {
+                            product.style.display = "none";
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+   
+
+
+

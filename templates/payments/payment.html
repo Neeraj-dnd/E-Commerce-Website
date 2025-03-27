@@ -1,0 +1,116 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment - HareKrishnaMasale</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'payments/payment.css' %}">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link rel="stylesheet" href="{% static 'harekrishnamasale/homepage.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">
+                <img src="/media/homepage/logo.png" alt="HareKrishnaMasale Logo">
+                <h3>HareKrishnaMasale</h3>
+            </a>
+            <ul>
+                <li><a href="{% url 'product-list' %}">Products</a></li>
+                <li><a href="{% url 'cart:cart-detail' %}">Cart</a></li>
+                <li><a href="#contact">Contact</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li class="user-dropdown">
+                        <span id="user-toggle" class="user-name">👤 {{ user.username }}</span>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li><a href="#">Your Profile</a></li>
+                            <li>Your Orders</li>
+                            <li>
+                                <form method="POST" action="{% url 'logout' %}">
+                                  {% csrf_token %}
+                                  <button type="submit" class="logout-btn">Logout</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="user-dropdown">
+                        <a href="{% url 'login' %}"><span id="user-toggle" class="user-name">👤Login</span></a>
+                        <ul id="user-menu" class="dropdown-menu">
+                            <li>
+                                <form method="get" action="{% url 'users:register' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="logout-btn">Sign Up</button>
+                                </form>
+                            </li>                     
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="container">
+            <h1>Complete Your Payment</h1>
+            <p>Order ID: {{ order.id }}</p>
+            <p>Amount: ₹{{ order.total_price }}</p>
+            <br>
+            <p>Order ID: {{ razorpay_order_id }}</p>
+            <p>Total Amount: ₹{{ amount|floatformat:2 }}</p>
+            <form action="{% url 'payments:payment_success' %}" method="post">
+                {% csrf_token %}
+                <button id="pay-button" class="btn" type="submit">Pay Now</button>
+            </form>
+        </div>
+    </section>
+
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div>📍 Location: Kota, India - 324010</div>
+            <div>📞 Phone: +91 8769106573</div>
+            <div>✉ Email: contact@harekrishnamasale.com</div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 HareKrishnaMasale. All Rights Reserved.</p>
+    </footer>
+
+    
+    <script>
+        const options = {
+            "key": "{{ RAZORPAY_KEY_ID }}",
+            "amount": "{{ payment.amount }}",
+            "currency": "INR",
+            "name": "HareKrishnaMasale",
+            "description": "Spice Order Payment",
+            "order_id": "{{ payment.id }}",
+            "handler": function (response){
+                alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+                // Redirect or save payment info
+            },
+            "prefill": {
+                "name": "{{ user.username }}",
+                "email": "{{ user.email }}"
+            },
+            "theme": {
+                "color": "#FFA500"
+            }
+        };
+        const rzp = new Razorpay(options);
+        document.getElementById("pay-button").onclick = function(e){
+            rzp.open();
+            e.preventDefault();
+        }
+    </script>
+</body>
+</html>

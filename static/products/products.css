@@ -1,0 +1,245 @@
+
+.filter-options {
+    margin-bottom: 0px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    background: #FFA500;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.filter-btn:hover {
+    background: #FF4500;
+}
+
+.products {
+    position: relative;
+    padding: 10px 20px;
+    background: #ff8c001b; /* Keeps your original background color */
+    margin-bottom: 1px;
+    margin-top: 54px;
+    overflow: hidden; /* Ensures no extra space issues */
+}
+
+.products::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/media/homepage/about-bg.jpg') center/cover no-repeat;
+    filter: blur(5px) brightness(70%); /* Blurred & dim */
+    opacity: 0.7; /* Controls transparency */
+    z-index: -1; /* Places it behind content */
+}
+
+
+.products h2 {
+    padding: 10px;
+    color: white;
+}
+
+.products p {
+    margin-bottom: 20px;
+    color: white;
+}
+
+
+/* Updated Product Grid for Better Layout */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px 120px;
+    padding: 20px;
+}
+
+/* Improved Product Card Styling */
+.product {
+    flex: 1 1 220px; /* Grow, shrink, and base size 250px */
+    min-height: 300px;
+    max-width: 220px; /* Prevents overly wide cards */
+    height:fit-content;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    background: white;
+}
+
+.product-detail {
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    gap: 30px;
+    padding: 20px;
+    display: flex;
+    border: 1px black solid;
+}
+
+#product-detail-about {
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.product-detail img {
+    width: auto;
+    max-width: 400px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+#product-img {
+    width: 100%;
+    height: 220px;
+}
+
+.product:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.product p {
+    font-size: 1.2em;
+    color: #8B0000;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+
+----------------------------------------------------------------
+
+
+
+
+.cart-container {
+    max-width: 900px;  /* Increased width for a better feel */
+    margin: auto;
+    padding: 20px;
+}
+
+/* Added margin-left and margin-right to give breathing room */
+.cart-items {
+    display: grid;
+    grid-template-columns: 17% 63% 20%;
+    column-gap: 0px;
+    align-items: center;
+    background: #fff8e1;
+    padding: 15px;
+    margin: 15px auto;  /* Centering with top and bottom space */
+    border-radius: 12px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: nowrap;
+    gap: 20px;
+    max-width: 90%;  /* Limits width so it's not stretched fully */
+}
+
+.cart-items img {
+    width: 90px;
+    height: 90px;
+    border-radius: 8px;
+}
+
+.cart-info {
+    display: grid;
+    grid-template-columns: 40% 25% 35%;
+    text-align: left;
+    gap: 30px;
+}
+
+#product-name {
+    font-weight: bold;
+}
+
+.cart-info p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.cart-remove {
+    background: #ff7043;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cart-remove:hover {
+    background: #d84315;
+}
+
+/* Total Price */
+.cart-total {
+    text-align: right;
+    font-size: 22px;
+    font-weight: bold;
+    margin: 30px auto 10px;
+    color: #5d4037;
+    max-width: 90%;
+}
+
+/* Continue Shopping Button */
+.continue-shopping, .btn{
+    display: block;
+    width: fit-content;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+}
+
+.continue-shopping:hover {
+    background: #388E3C;
+}
+
+.btn {
+    background-color: #0aa9be;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background: #068596;
+}
+
+#cart-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2% 20%;
+    gap: 40px;
+    height: fit-content;
+    justify-content: space-evenly;
+}
+
+

@@ -1,0 +1,90 @@
+/* success.css */
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff5e1;
+    color: #333;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Success Container */
+.success-container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: #fff5e1;
+}
+
+/* Success Card */
+.success-card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px;
+}
+
+.success-card h1 {
+    font-size: 2rem;
+    color: #4caf50;
+    margin-bottom: 20px;
+}
+
+.success-message {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.order-details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.order-details h3 {
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.order-details p {
+    font-size: 1rem;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Button Styles */
+.go-back-btn {
+    background-color: #ff6f00;
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.go-back-btn:hover {
+    background-color: #e65c00;
+}
