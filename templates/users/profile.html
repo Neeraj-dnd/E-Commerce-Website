@@ -7,8 +7,8 @@
 
     {% load static %}
 
-    <link rel="stylesheet" href="{% static 'payments/success.css' %}">
     <link rel="stylesheet" href="{% static 'harekrishnamasale/homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'payments/success.css' %}">
     <link rel="stylesheet" href="{% static 'users/profile.css' %}">
 </head>
 <body>
@@ -27,7 +27,7 @@
                     <li class="user-dropdown">
                         <span id="user-toggle" class="user-name">👤 {{ user.username }}</span>
                         <ul id="user-menu" class="dropdown-menu">
-                            <li><a href="#">Your Profile</a></li>
+                            <li><a href="{% url 'users:profile' %}">Your Profile</a></li>
                             <li>Your Orders</li>
                             <li>
                                 <form method="POST" action="{% url 'logout' %}">

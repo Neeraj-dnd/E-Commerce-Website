@@ -21,6 +21,7 @@ header {
     padding: 2px 0;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    transition: all 0.3s ease-in-out;
 }
 
 nav {
@@ -66,20 +67,21 @@ ul li a:hover {
 
 #search {
     display: block;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 90px;
+    /* position: fixed; */
+    /* top: 20px; */
+    /* right: 20px; */
+    width: 30%;
+    height: 28px;
     -webkit-transition: width ease 0.2s, opacity ease 0.4s;
     -moz-transition: width ease 0.2s, opacity ease 0.4s;
     -webkit-border-radius: 32px;
     -moz-border-radius: 32px;
-    -webkit-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
-    -moz-box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
+    -webkit-box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
+    -moz-box-shadow: inset  0px 0.2px 3px rgba(0, 0, 0, 0.25), inset 0px 1px 3px rgba(0, 0, 0, 0.7), 0px 1px 0px rgba(255, 255, 255, 0.03);
     -webkit-font-smoothing: antialiased;
     text-align: left;
-    font: 13px "Helvetica Neue", Arial, sans-serif;
-    padding: 4px 10px;
+    font: 1em "Helvetica Neue", Arial, sans-serif;
+    padding: 3px 15px;
     border: none;
     background: transparent;
     margin-bottom: 0;
@@ -89,8 +91,10 @@ ul li a:hover {
 }
 
 #search:focus {
-    width: 120px;
+    width: 32%;
     opacity: 1;
+    color: #8b0000;
+    font-size: 1em;
 }
 
 
@@ -110,6 +114,11 @@ ul li a:hover {
     text-shadow: 0.6px 0.6px 1px rgb(167, 167, 167);
     border-radius: 5px;
     border: 1px solid black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;  /* or whatever fits your layout */
+    vertical-align: middle;
 }
 
 .user-name:hover {
@@ -119,21 +128,38 @@ ul li a:hover {
 
 /* Initially hidden dropdown menu */
 .dropdown-menu {
-    display: none;
     position: absolute;
+    top: 100%;
     right: 0;
-    top: 35px;
     background-color: #ffcc80;
     border: 1px solid #ddd;
     border-radius: 5px;
     z-index: 100;
-    min-width: 120px;
+    padding-top: 8px;
+    width: fit-content;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.user-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .dropdown-menu li {
     list-style: none;
-    padding: 10px;
-    text-align: left;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
 }
 
 .dropdown-menu li a {
@@ -142,27 +168,28 @@ ul li a:hover {
     display: block;
 }
 
+/* Sign Up / Logout buttons */
 .logout-btn {
     cursor: pointer;
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 0.75rem 2rem;
+    margin-top: 0.2rem;
+    padding: 8px 15px;
     background-color: #e74c3c;
     color: white;
     border: none;
     border-radius: 10px;
-    font-size: 1.05rem;
     text-decoration: none;
-    transition: background-color 0.3s ease;
-    max-width: 200px;
+    font-size: 1.05rem;
     text-align: center;
-    transition: 0.3s ease-in-out;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, font-size 0.2s ease;
 }
+
 
 .logout-btn:hover {
     background-color: #c0392b;
     color: rgb(224, 222, 222);
     border-radius: 12px;
+    font-size: 1.06rem;
 }
 
 /* Hidden class for dropdown visibility */
@@ -178,10 +205,7 @@ ul li a:hover {
     border-radius: 6px;
 }
 
-/* Additional Styling */
-.user-dropdown:hover .dropdown-menu {
-    display: block; /* In case you want to show it on hover as well (optional) */
-}
+
 
 
   /* ----------------------------------------------- */

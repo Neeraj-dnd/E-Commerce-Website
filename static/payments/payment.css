@@ -17,7 +17,7 @@ body {
     margin-top: 80px;
 }
 
-h1 {
+.summary h1 {
     text-align: center;
     color: #d97706;
     padding: 3%;
@@ -29,13 +29,13 @@ h1 {
     color: #bf5700;
 }
 
-ul {
+.summary ul {
     margin-top: 20px;
     list-style-type: none;
     padding: 0;
 }
 
-li {
+.summary li {
     padding: 5px 0;
 }
 

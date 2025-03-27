@@ -59,7 +59,7 @@
     flex-direction: column;
 }
 
-.logout-btn {
+/* .logout-btn {
     display: inline-block;
     margin-top: 2rem;
     padding: 0.75rem 2rem;
@@ -78,7 +78,7 @@
     background-color: #c0392b;
     color: rgb(224, 222, 222);
     border-radius: 12px;
-}
+} */
 
 @keyframes fadeIn {
     from {
