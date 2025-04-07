@@ -59,7 +59,7 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Login</button>
+                <button class="register-btn" type="submit">Login</button>
             </form>
 
             {% if messages %}

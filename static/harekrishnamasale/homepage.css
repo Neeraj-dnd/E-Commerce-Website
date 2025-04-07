@@ -61,15 +61,12 @@ ul li a {
 }
 
 ul li a:hover {
-    font-weight: bolder;
-    color: #9b1d04;
+    color:  #390101;
 }
 
 #search {
     display: block;
-    /* position: fixed; */
-    /* top: 20px; */
-    /* right: 20px; */
+    margin-left: 10%;
     width: 30%;
     height: 28px;
     -webkit-transition: width ease 0.2s, opacity ease 0.4s;
@@ -113,17 +110,21 @@ ul li a:hover {
     background-color: #ffcc80;
     text-shadow: 0.6px 0.6px 1px rgb(167, 167, 167);
     border-radius: 5px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 1px solid rgb(109, 109, 109);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 120px;  /* or whatever fits your layout */
     vertical-align: middle;
+    transition: box-shadow 0.3s ease;
+    font-size: 1rem;
 }
 
 .user-name:hover {
-    background-color: #ff8c00;
-    border: 1px solid rgb(109, 109, 109);
+    border: 1px solid black;
+    /* border: 1px solid rgb(109, 109, 109); */
+    box-shadow: rgb(59, 64, 68) 0.7px 0.7px 1.5px 0px inset, rgba(7, 7, 7, 0.5) -0.7px -0.7px 1.5px 0.25px inset;
 }
 
 /* Initially hidden dropdown menu */
@@ -188,7 +189,6 @@ ul li a:hover {
 .logout-btn:hover {
     background-color: #c0392b;
     color: rgb(224, 222, 222);
-    border-radius: 12px;
     font-size: 1.06rem;
 }
 
@@ -329,7 +329,7 @@ ul li a:hover {
 
 .products h1 {
     padding: 20px;
-    color: #ffcc80;
+    color: white;
     margin-bottom: 30px;
 }
 
@@ -338,7 +338,7 @@ ul li a:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px 120px;
+    gap: 40px 70px;
     padding: 20px;
 }
 
@@ -384,6 +384,26 @@ ul li a:hover {
     color: #8B0000;
     margin-top: 10px;
     font-weight: bold;
+}
+
+.add-to-cart-button {
+    white-space: nowrap;
+    display: block;
+    padding: 0 12px;
+    margin: 5px;
+    font-size: 13px;
+    line-height: 29px;
+    text-align: center;
+    border: .5px solid #ffa41c;    border-radius: 50px;
+    outline: 0;
+    color: black;
+    background: #ffa41c;
+}
+
+.add-to-cart-button:hover {
+    cursor: pointer;
+    background: #ff9a03;
+    border: .5px solid black;
 }
 
 

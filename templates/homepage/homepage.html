@@ -66,15 +66,20 @@
     <section class="products">
         <h1>Our Bestselling Spices</h1>
         <div class="product-grid">
-            {% for product in products %}            
-                <div class="product">
-                    <div id="product-img">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% for product in products %}
+                <a href="{% url 'product-detail' product.id %}" style="text-decoration: none; color: inherit;">
+                    <div class="product">
+                        <div id="product-img">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </div>
+                        <h3>{{ product.name }}</h3>
+                        <p>₹{{ product.price }}</p>
+                        <form action="{% url 'cart:cart-add' product.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="add-to-cart-button" type="submit">Add to Cart</button>
+                        </form>  
                     </div>
-                    <h3>{{ product.name }}</h3>
-                    <p>₹{{ product.price }}</p>
-                    <p><a href="">Add to Cart</a></p>
-                </div>
+                </a>            
             {% endfor %}
         </div>
         <a href="{% url 'product-list' %}" class="cta">View All Spices</a>

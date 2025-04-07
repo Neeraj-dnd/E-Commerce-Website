@@ -19,7 +19,7 @@
     background: #FF4500;
 }
 
-.products {
+.filter {
     position: relative;
     padding: 10px 20px;
     background: #ff8c001b; /* Keeps your original background color */
@@ -28,7 +28,7 @@
     overflow: hidden; /* Ensures no extra space issues */
 }
 
-.products::before {
+.filter::before {
     content: "";
     position: absolute;
     top: 0;
@@ -42,25 +42,22 @@
 }
 
 
-.products h2 {
+.filter h2 {
     padding: 10px;
     color: white;
 }
 
-.products p {
+.filter p {
     margin-bottom: 20px;
     color: white;
 }
 
+/* --------------------------------------------- */
 
-/* Updated Product Grid for Better Layout */
-.product-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px 120px;
-    padding: 20px;
+.products-section {
+    padding: 3% 0%;
 }
+
 
 /* Improved Product Card Styling */
 .product {
@@ -137,7 +134,7 @@
 
 
 .cart-container {
-    max-width: 900px;  /* Increased width for a better feel */
+    max-width: 90%;  /* Increased width for a better feel */
     margin: auto;
     padding: 20px;
 }
@@ -145,16 +142,16 @@
 /* Added margin-left and margin-right to give breathing room */
 .cart-items {
     display: grid;
-    grid-template-columns: 17% 63% 20%;
+    grid-template-columns: 15% 67% 18%;;
     column-gap: 0px;
     align-items: center;
     background: #fff8e1;
-    padding: 15px;
+    padding: 1%;
     margin: 15px auto;  /* Centering with top and bottom space */
     border-radius: 12px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     flex-wrap: nowrap;
-    gap: 20px;
+    
     max-width: 90%;  /* Limits width so it's not stretched fully */
 }
 
@@ -166,9 +163,8 @@
 
 .cart-info {
     display: grid;
-    grid-template-columns: 40% 25% 35%;
+    grid-template-columns: 35% 30% 35%;
     text-align: left;
-    gap: 30px;
 }
 
 #product-name {

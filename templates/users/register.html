@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="{% static 'users/profile.css' %}">
 </head>
 <body>
-    <link rel="stylesheet" href="{% static 'harekrishnamasale/homepage.css' %}">
-    <link rel="stylesheet" href="{% static 'users/profile.css' %}">
-</head>
-<body>
     <header>
         <nav>
             <a href="/" class="logo">
@@ -62,10 +58,16 @@
             <h2>Sign Up</h2>
             <form method="POST" action="{% url 'users:register' %}">
                 {% csrf_token %}
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                <button type="submit">Register</button>
+                <div class="input-group">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                </div>
+                <button class="register-btn" type="submit">Register</button>
             </form>
 
             {% if messages %}
