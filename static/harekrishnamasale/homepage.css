@@ -58,6 +58,7 @@ ul li a {
     font-size: 1em;
     font-weight: bold;
     transition: 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 ul li a:hover {
@@ -101,7 +102,6 @@ ul li a:hover {
 .user-dropdown {
     position: relative;
     list-style: none;
-    cursor: pointer;
 }
 
 .user-name {
@@ -110,7 +110,6 @@ ul li a:hover {
     background-color: #ffcc80;
     text-shadow: 0.6px 0.6px 1px rgb(167, 167, 167);
     border-radius: 5px;
-    /* border: 1px solid black; */
     border: 1px solid rgb(109, 109, 109);
     white-space: nowrap;
     overflow: hidden;
@@ -119,11 +118,11 @@ ul li a:hover {
     vertical-align: middle;
     transition: box-shadow 0.3s ease;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .user-name:hover {
     border: 1px solid black;
-    /* border: 1px solid rgb(109, 109, 109); */
     box-shadow: rgb(59, 64, 68) 0.7px 0.7px 1.5px 0px inset, rgba(7, 7, 7, 0.5) -0.7px -0.7px 1.5px 0.25px inset;
 }
 
@@ -161,12 +160,18 @@ ul li a:hover {
     padding: 5px;
     text-align: center;
     width: 100%;
+    cursor: pointer;
 }
 
 .dropdown-menu li a {
     text-decoration: none;
     color: black;
     display: block;
+    cursor: pointer;
+}
+
+.dropdown-menu li a:hover {
+    color: #8B0000;
 }
 
 /* Sign Up / Logout buttons */
@@ -187,9 +192,7 @@ ul li a:hover {
 
 
 .logout-btn:hover {
-    background-color: #c0392b;
-    color: rgb(224, 222, 222);
-    font-size: 1.06rem;
+    box-shadow: rgb(59, 64, 68) 0.7px 0.7px 1.5px 0px inset, rgba(7, 7, 7, 0.5) -0.7px -0.7px 1.5px 0.25px inset;
 }
 
 /* Hidden class for dropdown visibility */
@@ -250,6 +253,7 @@ ul li a:hover {
     display: inline-block;
     padding: 15px 30px;
     background: #ff8c00; /* Bright saffron */
+    border: 1px solid #ff8c00;
     border-radius: 8px;
     font-weight: bold;
     text-decoration: none;
@@ -265,9 +269,8 @@ ul li a:hover {
     transform: scale(1.05);
     transition: 0.3s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-    font-size: 1.19em;
-    text-shadow: 0.4px 0.4px 1px black;
-    border-radius: 9px;
+    border-radius: 12px;
+    border: 1px solid black;
 }
 
 
